@@ -2,13 +2,15 @@ package com.example.soldier.soldier.enums;
 
 public enum StatusEnum {
 
-    ATIVO("ATIVO"),
+    ATIVO("ATIVO","ATIVO"),
 
-    INATIVO("INATIVO");
+    INATIVO("ATIVO","INATIVO");
 
+    private String codigo;
     private String descricao;
 
-    StatusEnum(String descricao) {
+    StatusEnum(String descricao, String codigo) {
+        this.codigo = codigo;
         this.descricao = descricao;
     }
 
