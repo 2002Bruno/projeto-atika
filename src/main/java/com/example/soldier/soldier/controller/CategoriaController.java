@@ -2,14 +2,20 @@ package com.example.soldier.soldier.controller;
 
 import com.example.soldier.soldier.controller.IController.ICategoriaController;
 import com.example.soldier.soldier.entity.Categoria;
+import com.example.soldier.soldier.request.CategoriaRequest;
+import com.example.soldier.soldier.request.CategoriaRequestConverter;
+import com.example.soldier.soldier.response.CategoriaResponse;
+import com.example.soldier.soldier.response.CategoriaResponseConverter;
+import com.example.soldier.soldier.service.CategoriaService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.soldier.soldier.request.CategoriaRequest;
-import com.example.soldier.soldier.request.CategoriaRequestConverter;
-import com.example.soldier.soldier.service.CategoriaService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/categorias")
@@ -21,47 +27,44 @@ public class CategoriaController implements ICategoriaController {
     @Autowired
     private CategoriaRequestConverter categoriaRequestConverter;
 
+    @Autowired
+    private CategoriaResponseConverter categoriaResponseConverter;
+
 
     @Override
-    public ResponseEntity cadastrar(CategoriaRequest categoriaRequest) {
+    public ResponseEntity<?> cadastrarCategorias(@Valid @RequestBody CategoriaRequest categoriaRequest) {
         Categoria categoria = categoriaRequestConverter.toEntity(categoriaRequest);
         categoriaService.cadastrar(categoria);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    /*@Override
-    public ResponseEntity editar(PessoaRequest pessoaRequest) {
-        Pessoa pessoa = pessoaService.buscarPorId(pessoaRequest.getId());
-        pessoa.setNome(pessoaRequest.getNome());
-        pessoa.setEmail(pessoaRequest.getEmail());
-        pessoaService.editar(pessoa);
+    @Override
+    public ResponseEntity<?> listarCategorias() {
+        List<Categoria> categorialist = categoriaService.listar();
+        return !categoriaResponseConverter.toResponse(categorialist).isEmpty() ? ResponseEntity.ok(categorialist) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+    }
+
+    @Override
+    public ResponseEntity<?> editarCategorias(CategoriaRequest categoriaRequest) {
+        Categoria categoria = categoriaService.buscarPorId(categoriaRequest.getId());
+        categoria.setNome(categoriaRequest.getNome());
+        categoriaRequestConverter.toEntity(categoriaRequest);
+        categoriaService.editar(categoria);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @Override
-    public ResponseEntity<List<PessoaResponse>> listar() {
-        return ResponseEntity.ok(pessoaResponseConverter.toResponse(pessoaService.listaPadrao()));
 
+
+    @Override
+    public void deletarCategoria(Long id) {
+        categoriaService.deletar(id);
     }
 
     @Override
-    public void deletar(Long id) {
-        pessoaService.excluirLogicamente(id);
+    public ResponseEntity<CategoriaResponse> buscarCategoriaPorId(Long id) {
+        Categoria iDCategoria = categoriaService.buscarPorId(id);
+        return  ResponseEntity.ok(categoriaResponseConverter.toResponse(iDCategoria));
     }
-
-    @Override
-    public ResponseEntity<PessoaResponse> findById(Long id) {
-        return ResponseEntity.ok(pessoaResponseConverter.toResponse(pessoaService.buscarPorId(id)));
-    }
-
-    @Override
-    public ResponseEntity<List<PessoaResponse>> listarTodos() {
-        return ResponseEntity.ok(pessoaResponseConverter.toResponse(pessoaService.listarTodos()));
-    }
-
-    @Override
-    public ResponseEntity<List<PessoaResponse>> listarTecnicos() {
-        return ResponseEntity.ok(pessoaResponseConverter.toResponse(pessoaService.listarTecnicos()));
-    }*/
 
 }
