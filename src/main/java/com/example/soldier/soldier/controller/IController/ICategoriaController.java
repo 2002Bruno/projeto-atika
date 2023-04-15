@@ -1,7 +1,7 @@
 package com.example.soldier.soldier.controller.IController;
 
-import com.example.soldier.soldier.request.CategoriaRequest;
-import com.example.soldier.soldier.response.CategoriaResponse;
+import com.example.soldier.soldier.dto.request.CategoriaRequest;
+import com.example.soldier.soldier.dto.response.CategoriaResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
