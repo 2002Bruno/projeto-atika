@@ -16,13 +16,13 @@ public class PessoaService {
     private PessoaRepository pessoaRepository;
 
 
-    public void cadastrar(Pessoa categoria) {
-        categoria.setStatus(StatusEnum.ATIVO);
-        pessoaRepository.save(categoria);
+    public void cadastrar(Pessoa pessoa) {
+        pessoa.setStatus(StatusEnum.ATIVO.getDescricao());
+        pessoaRepository.save(pessoa);
     }
 
-    public void editar(Pessoa categoria) {
-        pessoaRepository.save(categoria);
+    public void editar(Pessoa pessoa) {
+        pessoaRepository.save(pessoa);
     }
 
     public List<Pessoa> listar() {
@@ -31,14 +31,14 @@ public class PessoaService {
 
 
     public Pessoa buscarPorId(Long id) {
-        Pessoa categoria = pessoaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pessoa não Encontrada"));
-        return categoria;
+        Pessoa pessoa = pessoaRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Pessoa não Encontrada"));
+        return pessoa;
     }
 
 
     public void deletar(Long id) {
         Pessoa pessoa = buscarPorId(id);
-        pessoa.setStatus(StatusEnum.INATIVO);
+        pessoa.setStatus(StatusEnum.INATIVO.getDescricao());
         pessoaRepository.save(pessoa);
     }
 }

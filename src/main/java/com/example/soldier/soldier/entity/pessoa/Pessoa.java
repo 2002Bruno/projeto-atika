@@ -22,7 +22,7 @@ public class Pessoa {
 
     private String nome;
 
-    private StatusEnum status;
+    private String status;
 
     @Embedded
     private Endereco endereco;
