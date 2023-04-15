@@ -1,4 +1,4 @@
-package com.example.soldier.soldier.response;
+package com.example.soldier.soldier.dto.response;
 
 import com.example.soldier.soldier.entity.Categoria;
 import com.example.soldier.soldier.modelmapper.AbstractResponseMapper;

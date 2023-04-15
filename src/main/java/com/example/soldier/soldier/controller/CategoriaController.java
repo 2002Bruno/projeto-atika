@@ -2,10 +2,10 @@ package com.example.soldier.soldier.controller;
 
 import com.example.soldier.soldier.controller.IController.ICategoriaController;
 import com.example.soldier.soldier.entity.Categoria;
-import com.example.soldier.soldier.request.CategoriaRequest;
-import com.example.soldier.soldier.request.CategoriaRequestConverter;
-import com.example.soldier.soldier.response.CategoriaResponse;
-import com.example.soldier.soldier.response.CategoriaResponseConverter;
+import com.example.soldier.soldier.dto.request.CategoriaRequest;
+import com.example.soldier.soldier.dto.request.CategoriaRequestConverter;
+import com.example.soldier.soldier.dto.response.CategoriaResponse;
+import com.example.soldier.soldier.dto.response.CategoriaResponseConverter;
 import com.example.soldier.soldier.service.CategoriaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

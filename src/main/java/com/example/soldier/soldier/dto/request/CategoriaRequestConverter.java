@@ -1,4 +1,4 @@
-package com.example.soldier.soldier.request;
+package com.example.soldier.soldier.dto.request;
 
 import com.example.soldier.soldier.entity.Categoria;
 import com.example.soldier.soldier.modelmapper.AbstractEntityMapper;

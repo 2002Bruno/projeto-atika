@@ -1,4 +1,4 @@
-package com.example.soldier.soldier.request;
+package com.example.soldier.soldier.dto.request;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.example.soldier.soldier.response;
+package com.example.soldier.soldier.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
